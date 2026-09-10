@@ -1,0 +1,331 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Dispatcher – Ihr digitaler Büroassistent</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      font-size: 26px;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #172033;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 90px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      background: white;
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 54px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #5d6678;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #172033;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .mockup {
+      background: #172033;
+      color: white;
+      border-radius: 18px;
+      padding: 30px;
+      width: 400px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .mockup h3 {
+      margin-bottom: 20px;
+    }
+
+    .order {
+      background: white;
+      color: #172033;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .high {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #697386;
+    }
+
+    .cta {
+      text-align: center;
+      background: #172033;
+      color: white;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 15px auto 30px;
+      color: #d5d9e2;
+    }
+
+    .cta .button {
+      background: white;
+      color: #172033;
+    }
+
+    footer {
+      padding: 30px 7%;
+      text-align: center;
+      background: #111827;
+      color: #aeb6c4;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .mockup {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">⚡ AI Dispatcher</div>
+
+  <nav>
+    <a href="#vorteile">Vorteile</a>
+    <a href="#kontakt">Demo</a>
+  </nav>
+</header>
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <div class="badge">
+      Für Schweizer Elektroinstallationsbetriebe
+    </div>
+
+    <h1>
+      Weniger Büro.<br>
+      Mehr Zeit für Aufträge.
+    </h1>
+
+    <p>
+      AI Dispatcher erfasst Kundenanfragen automatisch,
+      strukturiert die wichtigsten Informationen und
+      macht daraus übersichtliche Aufträge.
+    </p>
+
+    <a class="button" href="#kontakt">
+      Kostenlose Demo
+    </a>
+
+  </div>
+
+  <div class="mockup">
+
+    <h3>Neue Aufträge</h3>
+
+    <div class="order">
+      <div class="high">🔴 HOHE PRIORITÄT</div>
+      <strong>Max Müller</strong>
+      <p>Sicherung löst ständig aus</p>
+      <small>Basel · Heute</small>
+    </div>
+
+    <div class="order">
+      <div>🟡 NORMAL</div>
+      <strong>Anna Meier</strong>
+      <p>Steckdose funktioniert nicht</p>
+      <small>Muttenz · Morgen</small>
+    </div>
+
+    <div class="order">
+      <div>🟢 NORMAL</div>
+      <strong>Peter Schneider</strong>
+      <p>Neue Lampe installieren</p>
+      <small>Allschwil · Freitag</small>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="vorteile">
+
+  <h2 class="section-title">
+    Dein digitaler Büroassistent
+  </h2>
+
+  <div class="features">
+
+    <div class="card">
+      <div class="icon">📞</div>
+      <h3>Anfragen erfassen</h3>
+      <p>
+        Kundenanfragen werden strukturiert aufgenommen,
+        damit keine wichtigen Informationen verloren gehen.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>KI-Unterstützung</h3>
+      <p>
+        Die KI erkennt das Problem und hilft,
+        Anfragen nach Dringlichkeit zu sortieren.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Aufträge im Überblick</h3>
+      <p>
+        Neue und laufende Aufträge übersichtlich
+        an einem Ort verwalten.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="cta" id="kontakt">
+
+  <h2>Bereit, weniger Büroarbeit zu haben?</h2>
+
+  <p>
+    Teste AI Dispatcher kostenlos und entdecke,
+    wie dein Betrieb Kundenanfragen einfacher verwalten kann.
+  </p>
+
+  <a class="button" href="mailto:demo@example.com">
+    Demo anfragen
+  </a>
+
+</section>
+
+<footer>
+  © 2026 AI Dispatcher · Für Schweizer Elektroinstallationsbetriebe
+</footer>
+
+</body>
+</html>
+```
