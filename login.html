@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Login – AI Dispatcher</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.12), transparent 35%),
+        #0b1220;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .brand-name span {
+      color: #2563eb;
+    }
+
+    .brand-tagline {
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .login-card {
+      background: rgba(17, 24, 39, 0.94);
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      padding: 42px;
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 0 60px rgba(37, 99, 235, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .login-header {
+      margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .login-header p {
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #64748b;
+    }
+
+    .form-group input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .login-button {
+      width: 100%;
+      margin-top: 5px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .login-button:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    #login-message {
+      min-height: 20px;
+      margin-top: 18px;
+      text-align: center;
+      color: #f87171;
+      font-size: 13px;
+    }
+
+    .login-footer {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .security {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 18px;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .security-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+    }
+
+    @media (max-width: 520px) {
+      .login-card {
+        padding: 30px 22px;
+      }
+
+      .login-header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="login-wrapper">
+
+    <div class="brand">
+      <div class="brand-name">
+        AI <span>Dispatcher</span>
+      </div>
+
+      <div class="brand-tagline">
+        KI für Schweizer Elektroinstallationsbetriebe
+      </div>
+    </div>
+
+    <section class="login-card">
+
+      <div class="login-header">
+        <h1>Willkommen zurück</h1>
+        <p>
+          Melden Sie sich an, um auf Ihren
+          AI Dispatcher Bereich zuzugreifen.
+        </p>
+      </div>
+
+      <form id="login-form">
+
+        <div class="form-group">
+          <label for="email">E-Mail-Adresse</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="ihre@email.ch"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Passwort</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Ihr Passwort"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="login-button">
+          Anmelden
+        </button>
+
+        <p id="login-message"></p>
+
+      </form>
+
+      <div class="security">
+        <span class="security-dot"></span>
+        Sichere Anmeldung
+      </div>
+
+      <div class="login-footer">
+        AI Dispatcher<br>
+        Automatisierung für Schweizer Elektroinstallationsbetriebe
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
