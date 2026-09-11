@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -113,22 +114,21 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
-    /* Passwortfeld */
     .password-field {
       position: relative;
     }
 
     .password-field input {
-      padding-right: 48px;
+      padding-right: 52px;
     }
 
     .password-toggle {
       position: absolute;
-      right: 10px;
+      right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -137,21 +137,13 @@
       color: #64748b;
       cursor: pointer;
       border-radius: 8px;
+      font-size: 18px;
+      z-index: 5;
     }
 
     .password-toggle:hover {
       background: rgba(255, 255, 255, 0.05);
       color: #cbd5e1;
-    }
-
-    .password-toggle svg {
-      width: 19px;
-      height: 19px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
 
     .login-button {
@@ -273,14 +265,13 @@
             >
 
             <button
-              <button
-  type="button"
-  class="password-toggle"
-  id="password-toggle"
-  aria-label="Passwort anzeigen"
->
-  👁
-</button>
+              type="button"
+              class="password-toggle"
+              id="password-toggle"
+              aria-label="Passwort anzeigen"
+            >
+              👁
+            </button>
 
           </div>
         </div>
@@ -323,50 +314,31 @@
     const passwordToggle = document.getElementById("password-toggle");
     const loginMessage = document.getElementById("login-message");
 
-    passwordToggle.onclick = function () {
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    passwordToggle.textContent = "🙈";
-    passwordToggle.setAttribute("aria-label", "Passwort ausblenden");
-  } else {
-    passwordInput.type = "password";
-    passwordToggle.textContent = "👁";
-    passwordToggle.setAttribute("aria-label", "Passwort anzeigen");
-  }
-};
+    passwordToggle.addEventListener("click", function () {
+
       if (passwordInput.type === "password") {
+
         passwordInput.type = "text";
+
+        passwordToggle.textContent = "🙈";
 
         passwordToggle.setAttribute(
           "aria-label",
           "Passwort ausblenden"
         );
 
-        passwordToggle.innerHTML = `
-          <svg viewBox="0 0 24 24">
-            <path d="M3 3l18 18"></path>
-            <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>
-            <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10 7 10 7a18 18 0 0 1-3.1 3.8"></path>
-            <path d="M6.2 6.2C3.5 8.1 2 12 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.2"></path>
-          </svg>
-        `;
-
       } else {
 
         passwordInput.type = "password";
+
+        passwordToggle.textContent = "👁";
 
         passwordToggle.setAttribute(
           "aria-label",
           "Passwort anzeigen"
         );
-
-        passwordToggle.innerHTML = `
-          <svg viewBox="0 0 24 24">
-            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
-            <circle cx="12" cy="12" r="2.5"></circle>
-          </svg>
-        `;
       }
+
     });
 
     loginForm.addEventListener("submit", async function(event) {
@@ -385,6 +357,7 @@
       });
 
       if (error) {
+
         loginMessage.textContent =
           "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
 
@@ -395,8 +368,10 @@
 
       loginMessage.textContent = "Anmeldung erfolgreich.";
       loginMessage.style.color = "#4ade80";
+
     });
   </script>
 
 </body>
 </html>
+```
