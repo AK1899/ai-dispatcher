@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -199,104 +199,212 @@
       }
     }
   </style>
+
 </head>
 
 <body>
 
   <div class="wrapper">
 
-    <div class="brand">
-      <div class="brand-name">
-        AI <span>Dispatcher</span>
-      </div>
+```
+<div class="brand">
+  <div class="brand-name">
+    AI <span>Dispatcher</span>
+  </div>
 
-      <div class="tagline">
-        KI für Schweizer Elektroinstallationsbetriebe
-      </div>
+  <div class="tagline">
+    KI für Schweizer Elektroinstallationsbetriebe
+  </div>
+</div>
+
+<div class="card">
+
+  <h1>Willkommen zurück</h1>
+
+  <p class="intro">
+    Melden Sie sich an, um auf Ihren
+    AI Dispatcher Bereich zuzugreifen.
+  </p>
+
+  <form id="login-form">
+
+    <div class="field">
+      <label for="email">E-Mail-Adresse</label>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="ihre@email.ch"
+        autocomplete="email"
+        required
+      >
     </div>
 
-    <div class="card">
+    <div class="field">
+      <label for="password">Passwort</label>
 
-      <h1>Willkommen zurück</h1>
+      <div class="password-box">
 
-      <p class="intro">
-        Melden Sie sich an, um auf Ihren
-        AI Dispatcher Bereich zuzugreifen.
-      </p>
-
-      <form id="login-form">
-
-        <div class="field">
-          <label for="email">E-Mail-Adresse</label>
-
-          <input
-            id="email"
-            type="email"
-            placeholder="ihre@email.ch"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="field">
-          <label for="password">Passwort</label>
-
-          <div class="password-box">
-
-            <input
-              id="password"
-              type="password"
-              placeholder="Ihr Passwort"
-              autocomplete="current-password"
-              required
-            >
-
-            <button
-              id="eye-button"
-              class="eye-button"
-              type="button"
-              aria-label="Passwort anzeigen"
-            >
-              <svg viewBox="0 0 24 24">
-                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
-                <circle cx="12" cy="12" r="2.5"></circle>
-              </svg>
-            </button>
-
-          </div>
-        </div>
+        <input
+          id="password"
+          type="password"
+          placeholder="Ihr Passwort"
+          autocomplete="current-password"
+          required
+        >
 
         <button
-          class="submit-button"
-          type="submit"
+          id="eye-button"
+          class="eye-button"
+          type="button"
+          aria-label="Passwort anzeigen"
         >
-          Anmelden
+          <svg viewBox="0 0 24 24">
+            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
+            <circle cx="12" cy="12" r="2.5"></circle>
+          </svg>
         </button>
 
-        <div id="message"></div>
-
-      </form>
-
-      <div class="security">
-        <span class="dot"></span>
-        Sichere Anmeldung
       </div>
-
-      <div class="footer">
-        AI Dispatcher<br>
-        Automatisierung für Schweizer Elektroinstallationsbetriebe
-      </div>
-
     </div>
+
+    <button
+      class="submit-button"
+      type="submit"
+    >
+      Anmelden
+    </button>
+
+    <div id="message"></div>
+
+  </form>
+
+  <div class="security">
+    <span class="dot"></span>
+    Sichere Anmeldung
+  </div>
+
+  <div class="footer">
+    AI Dispatcher<br>
+    Automatisierung für Schweizer Elektroinstallationsbetriebe
+  </div>
+
+</div>
+```
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
+    const SUPABASE_URL =
+      "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
 
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,_
-```
+    const SUPABASE_KEY =
+      "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const eyeButton =
+      document.getElementById("eye-button");
+
+    const loginForm =
+      document.getElementById("login-form");
+
+    const message =
+      document.getElementById("message");
+
+
+    eyeButton.addEventListener("click", function () {
+
+      if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+
+        eyeButton.innerHTML =
+          '<svg viewBox="0 0 24 24">' +
+          '<path d="M3 3l18 18"></path>' +
+          '<path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>' +
+          '<path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10 7 10 7"></path>' +
+          '<path d="M6.2 6.2C3.5 8.1 2 12 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.2"></path>' +
+          '</svg>';
+
+        eyeButton.setAttribute(
+          "aria-label",
+          "Passwort ausblenden"
+        );
+
+      } else {
+
+        passwordInput.type = "password";
+
+        eyeButton.innerHTML =
+          '<svg viewBox="0 0 24 24">' +
+          '<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>' +
+          '<circle cx="12" cy="12" r="2.5"></circle>' +
+          '</svg>';
+
+        eyeButton.setAttribute(
+          "aria-label",
+          "Passwort anzeigen"
+        );
+      }
+    });
+
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const password =
+          passwordInput.value;
+
+        message.textContent =
+          "Anmeldung läuft...";
+
+        message.style.color =
+          "#94a3b8";
+
+
+        const result =
+          await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+
+        if (result.error) {
+
+          message.textContent =
+            "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
+
+          message.style.color =
+            "#f87171";
+
+          return;
+        }
+
+
+        message.textContent =
+          "Anmeldung erfolgreich.";
+
+        message.style.color =
+          "#4ade80";
+      }
+    );
+  </script>
+
+</body>
+</html>
