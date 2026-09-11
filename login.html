@@ -288,15 +288,13 @@
 
 <script>
   const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
-  const SUPABASE_KEY = sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND;
+  const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
 
   const supabase = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
   );
-</script>
 
-<script>
   document.getElementById("login-form").addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -321,9 +319,7 @@
     message.textContent = "Anmeldung erfolgreich.";
     message.style.color = "#4ade80";
   });
-</script>
 
-<script>
   document.getElementById("password-toggle").addEventListener("click", function() {
     const passwordInput = document.getElementById("password");
 
@@ -339,31 +335,5 @@
   });
 </script>
 
-</body>
-</html>
-</script>
-
-</body>
-</script>
-</body>
-  <script>
-  const passwordInput = document.getElementById("password");
-  const passwordToggle = document.getElementById("password-toggle");
-
-  passwordToggle.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      passwordToggle.textContent = "🙈";
-    } else {
-      passwordInput.type = "password";
-      passwordToggle.textContent = "👁";
-    }
-  });
-</script>
-</html>
-  });
-</script>
-</body>
-</html>
 </body>
 </html>
