@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard – AI Dispatcher</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f8fafc;
+    }
+
+    .topbar {
+      height: 72px;
+      border-bottom: 1px solid #1e293b;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #2563eb;
+    }
+
+    .logout-button {
+      border: 1px solid #334155;
+      background: transparent;
+      color: #cbd5e1;
+      padding: 9px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .logout-button:hover {
+      background: #1e293b;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .welcome {
+      margin-bottom: 36px;
+    }
+
+    .welcome h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 12px;
+      border: 1px solid #1e293b;
+      border-radius: 999px;
+      color: #94a3b8;
+      font-size: 12px;
+      background: #111827;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 26px;
+      min-height: 180px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #60a5fa;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .coming-soon {
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px dashed #334155;
+      border-radius: 16px;
+      text-align: center;
+      color: #64748b;
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    .coming-soon strong {
+      display: block;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 800px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .container {
+        padding: 32px 20px;
+      }
+
+      .welcome h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="topbar">
+
+```
+<div class="brand">
+  AI <span>Dispatcher</span>
+</div>
+
+<button
+  id="logout-button"
+  class="logout-button"
+  type="button"
+>
+  Abmelden
+</button>
+```
+
+  </header>
+
+  <main class="container">
+
+```
+<section class="welcome">
+
+  <h1>Willkommen im Dashboard</h1>
+
+  <p>
+    Ihre zentrale Übersicht für den AI Dispatcher.
+  </p>
+
+  <div class="status">
+    <span class="status-dot"></span>
+    System bereit
+  </div>
+
+</section>
+
+
+<section class="cards">
+
+  <div class="card">
+
+    <div class="card-icon">
+      ⚡
+    </div>
+
+    <h2>Aufträge</h2>
+
+    <p>
+      Eingehende Kundenanfragen und Aufträge werden
+      hier später zentral verwaltet.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-icon">
+      ☎
+    </div>
+
+    <h2>Anfragen</h2>
+
+    <p>
+      Telefonische und digitale Kundenanfragen
+      werden automatisch erfasst.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-icon">
+      ✓
+    </div>
+
+    <h2>Dispatching</h2>
+
+    <p>
+      Der AI Dispatcher unterstützt später bei der
+      Zuordnung der richtigen Mitarbeiter.
+    </p>
+
+  </div>
+
+</section>
+
+
+<div class="coming-soon">
+
+  <strong>AI Dispatcher wird hier eingerichtet</strong>
+
+  Die eigentlichen Dispatcher-Funktionen bauen wir
+  Schritt für Schritt auf.
+
+</div>
+```
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
+
+    const supabase =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    async function checkSession() {
+
+      const {
+        data: { session }
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        window.location.href = "login.html";
+        return;
+      }
+    }
+
+
+    document
+      .getElementById("logout-button")
+      .addEventListener("click", async function() {
+
+        await supabase.auth.signOut();
+
+        window.location.href = "login.html";
+      });
+
+
+    checkSession();
+  </script>
+
+</body>
+</html>
