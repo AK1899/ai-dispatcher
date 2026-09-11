@@ -321,7 +321,22 @@
     message.textContent = "Anmeldung erfolgreich.";
     message.style.color = "#4ade80";
 </script>
+<script>
+  document.getElementById("password-toggle").addEventListener("click", () => {
+    const passwordInput = document.getElementById("password");
+    const toggleButton = document.getElementById("password-toggle");
 
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.textContent = "🙈";
+      toggleButton.setAttribute("aria-label", "Passwort ausblenden");
+    } else {
+      passwordInput.type = "password";
+      toggleButton.textContent = "👁";
+      toggleButton.setAttribute("aria-label", "Passwort anzeigen");
+    }
+  });
+</script>
 </body>
 </html>
   });
