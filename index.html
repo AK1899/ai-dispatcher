@@ -1287,25 +1287,52 @@
     SUPABASE_KEY
   );
 </script>
-  <div id="login-box">
-  <h2>AI Dispatcher Login</h2>
+ <section id="login" class="login-section">
 
-  <input
-    type="email"
-    id="email"
-    placeholder="E-Mail"
-  >
+  <div class="login-card">
 
-  <input
-    type="password"
-    id="password"
-    placeholder="Passwort"
-  >
+    <div class="login-logo">
+      AI <span>Dispatcher</span>
+    </div>
 
-  <button onclick="login()">Anmelden</button>
+    <div class="login-header">
+      <h2>Willkommen zurück</h2>
+      <p>Melden Sie sich an, um zu Ihrem Dashboard zu gelangen.</p>
+    </div>
 
-  <p id="login-message"></p>
-</div>
+    <div class="login-form">
+
+      <label for="email">E-Mail-Adresse</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="ihre@email.ch"
+        autocomplete="email"
+      >
+
+      <label for="password">Passwort</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="••••••••"
+        autocomplete="current-password"
+      >
+
+      <button onclick="login()" class="login-submit">
+        Anmelden
+      </button>
+
+      <p id="login-message"></p>
+
+    </div>
+
+    <div class="login-footer">
+      AI Dispatcher · Für Schweizer Elektroinstallationsbetriebe
+    </div>
+
+  </div>
+
+</section>
 
 <script>
   async function login() {
