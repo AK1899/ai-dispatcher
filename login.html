@@ -328,19 +328,19 @@
     message.style.color = "#4ade80";
   });
 
-  document.getElementById("password-toggle").addEventListener("click", function() {
-    const passwordInput = document.getElementById("password");
+<script>
+  const eyeButton = document.getElementById("password-toggle");
+  const passwordField = document.getElementById("password");
 
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      this.textContent = "🙈";
-      this.setAttribute("aria-label", "Passwort ausblenden");
+  eyeButton.onclick = function () {
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      eyeButton.textContent = "🙈";
     } else {
-      passwordInput.type = "password";
-      this.textContent = "👁";
-      this.setAttribute("aria-label", "Passwort anzeigen");
+      passwordField.type = "password";
+      eyeButton.textContent = "👁";
     }
-  });
+  };
 </script>
 
 </body>
