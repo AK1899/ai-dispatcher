@@ -4,196 +4,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Login – AI Dispatcher</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       min-height: 100vh;
       font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.18), transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.12), transparent 35%),
-        #0b1220;
+      background: #0b1220;
       color: #f8fafc;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px 20px;
+      padding: 24px;
     }
 
-    .login-wrapper {
+    .wrapper {
       width: 100%;
-      max-width: 460px;
+      max-width: 440px;
     }
 
     .brand {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .brand-name {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
-      letter-spacing: -0.8px;
+      letter-spacing: -1px;
     }
 
     .brand-name span {
       color: #2563eb;
     }
 
-    .brand-tagline {
+    .tagline {
       margin-top: 8px;
       color: #64748b;
       font-size: 13px;
     }
 
-    .login-card {
-      background: rgba(17, 24, 39, 0.94);
+    .card {
+      background: #111827;
       border: 1px solid #1e293b;
-      border-radius: 20px;
-      padding: 42px;
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45),
-        0 0 60px rgba(37, 99, 235, 0.08);
-      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
     }
 
-    .login-header {
-      margin-bottom: 30px;
-    }
-
-    .login-header h1 {
-      font-size: 28px;
+    h1 {
+      font-size: 27px;
       margin-bottom: 10px;
-      letter-spacing: -0.5px;
     }
 
-    .login-header p {
+    .intro {
       color: #94a3b8;
       font-size: 14px;
       line-height: 1.6;
+      margin-bottom: 28px;
     }
 
-    .form-group {
+    .field {
       margin-bottom: 20px;
     }
 
-    .form-group label {
+    label {
       display: block;
-      margin-bottom: 8px;
       color: #cbd5e1;
       font-size: 13px;
       font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .form-group input {
+    input {
       width: 100%;
-      padding: 14px 15px;
-      border-radius: 10px;
+      height: 48px;
       border: 1px solid #334155;
+      border-radius: 10px;
       background: #0f172a;
       color: #f8fafc;
+      padding: 0 14px;
       font-size: 15px;
       outline: none;
-      transition: 0.2s ease;
     }
 
-    .form-group input::placeholder {
-      color: #64748b;
-    }
-
-    .form-group input:focus {
+    input:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
-    .password-field {
+    .password-box {
       position: relative;
     }
 
-    .password-field input {
+    .password-box input {
       padding-right: 52px;
     }
 
-    .password-toggle {
+    .eye-button {
       position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
+      right: 5px;
+      top: 4px;
       width: 40px;
       height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
+      border: 0;
+      border-radius: 8px;
       background: transparent;
       color: #64748b;
       cursor: pointer;
-      border-radius: 8px;
-      font-size: 18px;
-      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
     }
 
-    .password-toggle:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: #cbd5e1;
+    .eye-button:hover {
+      background: #1e293b;
+      color: #f8fafc;
     }
 
-    .login-button {
+    .submit-button {
       width: 100%;
-      margin-top: 5px;
-      padding: 14px;
-      border: none;
+      height: 48px;
+      margin-top: 4px;
+      border: 0;
       border-radius: 10px;
       background: #2563eb;
       color: white;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
-    .login-button:hover {
+    .submit-button:hover {
       background: #1d4ed8;
-      transform: translateY(-1px);
     }
 
-    #login-message {
+    #message {
       min-height: 20px;
-      margin-top: 18px;
+      margin-top: 16px;
       text-align: center;
-      color: #f87171;
       font-size: 13px;
     }
 
     .security {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 7px;
-      margin-top: 18px;
+      margin-top: 20px;
       color: #64748b;
       font-size: 12px;
     }
 
-    .security-dot {
+    .dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #22c55e;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
     }
 
-    .login-footer {
-      margin-top: 28px;
-      padding-top: 22px;
+    .footer {
+      margin-top: 25px;
+      padding-top: 20px;
       border-top: 1px solid #1e293b;
       text-align: center;
       color: #64748b;
@@ -202,11 +181,11 @@
     }
 
     @media (max-width: 520px) {
-      .login-card {
-        padding: 30px 22px;
+      .card {
+        padding: 28px 22px;
       }
 
-      .login-header h1 {
+      h1 {
         font-size: 24px;
       }
     }
@@ -215,88 +194,88 @@
 
 <body>
 
-  <main class="login-wrapper">
+  <div class="wrapper">
 
     <div class="brand">
       <div class="brand-name">
         AI <span>Dispatcher</span>
       </div>
 
-      <div class="brand-tagline">
+      <div class="tagline">
         KI für Schweizer Elektroinstallationsbetriebe
       </div>
     </div>
 
-    <section class="login-card">
+    <div class="card">
 
-      <div class="login-header">
-        <h1>Willkommen zurück</h1>
-        <p>
-          Melden Sie sich an, um auf Ihren
-          AI Dispatcher Bereich zuzugreifen.
-        </p>
-      </div>
+      <h1>Willkommen zurück</h1>
+
+      <p class="intro">
+        Melden Sie sich an, um auf Ihren
+        AI Dispatcher Bereich zuzugreifen.
+      </p>
 
       <form id="login-form">
 
-        <div class="form-group">
+        <div class="field">
           <label for="email">E-Mail-Adresse</label>
 
           <input
-            type="email"
             id="email"
+            type="email"
             placeholder="ihre@email.ch"
             autocomplete="email"
             required
           >
         </div>
 
-        <div class="form-group">
+        <div class="field">
           <label for="password">Passwort</label>
 
-          <div class="password-field">
+          <div class="password-box">
 
             <input
-              type="password"
               id="password"
+              type="password"
               placeholder="Ihr Passwort"
               autocomplete="current-password"
               required
             >
 
             <button
+              id="eye-button"
+              class="eye-button"
               type="button"
-              class="password-toggle"
-              id="password-toggle"
               aria-label="Passwort anzeigen"
-            >
-              👁
-            </button>
+            >👁</button>
 
           </div>
         </div>
 
-        <button type="submit" class="login-button">
+        <button
+          class="submit-button"
+          type="submit"
+        >
           Anmelden
         </button>
 
-        <p id="login-message"></p>
+        <div id="message"></div>
 
       </form>
 
       <div class="security">
-        <span class="security-dot"></span>
+        <span class="dot"></span>
         Sichere Anmeldung
       </div>
 
-      <div class="login-footer">
+      <div class="footer">
         AI Dispatcher<br>
         Automatisierung für Schweizer Elektroinstallationsbetriebe
       </div>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -304,71 +283,57 @@
     const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
     const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
 
-    const supabase = window.supabase.createClient(
+    const supabaseClient = window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_KEY
     );
 
-    const loginForm = document.getElementById("login-form");
     const passwordInput = document.getElementById("password");
-    const passwordToggle = document.getElementById("password-toggle");
-    const loginMessage = document.getElementById("login-message");
+    const eyeButton = document.getElementById("eye-button");
+    const loginForm = document.getElementById("login-form");
+    const message = document.getElementById("message");
 
-    passwordToggle.addEventListener("click", function () {
-
+    eyeButton.addEventListener("click", function () {
       if (passwordInput.type === "password") {
-
         passwordInput.type = "text";
-
-        passwordToggle.textContent = "🙈";
-
-        passwordToggle.setAttribute(
+        eyeButton.textContent = "🙈";
+        eyeButton.setAttribute(
           "aria-label",
           "Passwort ausblenden"
         );
-
       } else {
-
         passwordInput.type = "password";
-
-        passwordToggle.textContent = "👁";
-
-        passwordToggle.setAttribute(
+        eyeButton.textContent = "👁";
+        eyeButton.setAttribute(
           "aria-label",
           "Passwort anzeigen"
         );
       }
-
     });
 
-    loginForm.addEventListener("submit", async function(event) {
-
+    loginForm.addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = passwordInput.value;
 
-      loginMessage.textContent = "Anmeldung läuft...";
-      loginMessage.style.color = "#94a3b8";
+      message.textContent = "Anmeldung läuft...";
+      message.style.color = "#94a3b8";
 
-      const { error } = await supabase.auth.signInWithPassword({
+      const result = await supabaseClient.auth.signInWithPassword({
         email: email,
         password: password
       });
 
-      if (error) {
-
-        loginMessage.textContent =
+      if (result.error) {
+        message.textContent =
           "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-
-        loginMessage.style.color = "#f87171";
-
+        message.style.color = "#f87171";
         return;
       }
 
-      loginMessage.textContent = "Anmeldung erfolgreich.";
-      loginMessage.style.color = "#4ade80";
-
+      message.textContent = "Anmeldung erfolgreich.";
+      message.style.color = "#4ade80";
     });
   </script>
 
