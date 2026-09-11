@@ -320,12 +320,13 @@
       });
 
       if (error) {
-      window.location.href = "dashboard.html";
-        return;
-      }
+  loginMessage.textContent =
+    "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
+  loginMessage.style.color = "#f87171";
+  return;
+}
 
-      loginMessage.textContent = "Anmeldung erfolgreich.";
-      loginMessage.style.color = "#4ade80";
+window.location.href = "dashboard.html";
     });
 
     passwordToggle.addEventListener("click", function() {
