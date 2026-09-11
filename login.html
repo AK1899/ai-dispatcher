@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -199,128 +199,113 @@
       }
     }
   </style>
-
 </head>
 
 <body>
 
   <div class="wrapper">
 
-```
-<div class="brand">
-  <div class="brand-name">
-    AI <span>Dispatcher</span>
-  </div>
+    <div class="brand">
+      <div class="brand-name">
+        AI <span>Dispatcher</span>
+      </div>
 
-  <div class="tagline">
-    KI für Schweizer Elektroinstallationsbetriebe
-  </div>
-</div>
-
-<div class="card">
-
-  <h1>Willkommen zurück</h1>
-
-  <p class="intro">
-    Melden Sie sich an, um auf Ihren
-    AI Dispatcher Bereich zuzugreifen.
-  </p>
-
-  <form id="login-form">
-
-    <div class="field">
-      <label for="email">E-Mail-Adresse</label>
-
-      <input
-        id="email"
-        type="email"
-        placeholder="ihre@email.ch"
-        autocomplete="email"
-        required
-      >
-    </div>
-
-    <div class="field">
-      <label for="password">Passwort</label>
-
-      <div class="password-box">
-
-        <input
-          id="password"
-          type="password"
-          placeholder="Ihr Passwort"
-          autocomplete="current-password"
-          required
-        >
-
-        <button
-          id="eye-button"
-          class="eye-button"
-          type="button"
-          aria-label="Passwort anzeigen"
-        >
-          <svg viewBox="0 0 24 24">
-            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
-            <circle cx="12" cy="12" r="2.5"></circle>
-          </svg>
-        </button>
-
+      <div class="tagline">
+        KI für Schweizer Elektroinstallationsbetriebe
       </div>
     </div>
 
-    <button
-      class="submit-button"
-      type="submit"
-    >
-      Anmelden
-    </button>
+    <div class="card">
 
-    <div id="message"></div>
+      <h1>Willkommen zurück</h1>
 
-  </form>
+      <p class="intro">
+        Melden Sie sich an, um auf Ihren
+        AI Dispatcher Bereich zuzugreifen.
+      </p>
 
-  <div class="security">
-    <span class="dot"></span>
-    Sichere Anmeldung
-  </div>
+      <form id="login-form">
 
-  <div class="footer">
-    AI Dispatcher<br>
-    Automatisierung für Schweizer Elektroinstallationsbetriebe
-  </div>
+        <div class="field">
+          <label for="email">E-Mail-Adresse</label>
 
-</div>
-```
+          <input
+            id="email"
+            type="email"
+            placeholder="ihre@email.ch"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Passwort</label>
+
+          <div class="password-box">
+
+            <input
+              id="password"
+              type="password"
+              placeholder="Ihr Passwort"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              id="eye-button"
+              class="eye-button"
+              type="button"
+              aria-label="Passwort anzeigen"
+            >
+              <svg id="eye-open" viewBox="0 0 24 24">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+            </button>
+
+          </div>
+        </div>
+
+        <button
+          class="submit-button"
+          type="submit"
+        >
+          Anmelden
+        </button>
+
+        <div id="message"></div>
+
+      </form>
+
+      <div class="security">
+        <span class="dot"></span>
+        Sichere Anmeldung
+      </div>
+
+      <div class="footer">
+        AI Dispatcher<br>
+        Automatisierung für Schweizer Elektroinstallationsbetriebe
+      </div>
+
+    </div>
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const SUPABASE_URL =
-      "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
+    const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
 
-    const SUPABASE_KEY =
-      "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
-
-    const passwordInput =
-      document.getElementById("password");
-
-    const eyeButton =
-      document.getElementById("eye-button");
-
-    const loginForm =
-      document.getElementById("login-form");
-
-    const message =
-      document.getElementById("message");
-
+    const passwordInput = document.getElementById("password");
+    const eyeButton = document.getElementById("eye-button");
+    const loginForm = document.getElementById("login-form");
+    const message = document.getElementById("message");
 
     eyeButton.addEventListener("click", function () {
 
@@ -358,53 +343,47 @@
       }
     });
 
+    loginForm.addEventListener("submit", async function (event) {
 
-    loginForm.addEventListener(
-      "submit",
-      async function (event) {
+      event.preventDefault();
 
-        event.preventDefault();
+      const email =
+        document.getElementById("email").value.trim();
 
-        const email =
-          document.getElementById("email").value.trim();
+      const password =
+        passwordInput.value;
 
-        const password =
-          passwordInput.value;
+      message.textContent =
+        "Anmeldung läuft...";
 
-        message.textContent =
-          "Anmeldung läuft...";
+      message.style.color =
+        "#94a3b8";
 
-        message.style.color =
-          "#94a3b8";
+      const result =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
 
-
-        const result =
-          await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-          });
-
-
-        if (result.error) {
-
-          message.textContent =
-            "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-
-          message.style.color =
-            "#f87171";
-
-          return;
-        }
-
+      if (result.error) {
 
         message.textContent =
-          "Anmeldung erfolgreich.";
+          "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
 
         message.style.color =
-          "#4ade80";
+          "#f87171";
+
+        return;
       }
-    );
+
+      message.textContent =
+        "Anmeldung erfolgreich.";
+
+      message.style.color =
+        "#4ade80";
+    });
   </script>
 
 </body>
 </html>
+```
