@@ -323,8 +323,17 @@
     const passwordToggle = document.getElementById("password-toggle");
     const loginMessage = document.getElementById("login-message");
 
-    passwordToggle.addEventListener("click", function () {
-
+    passwordToggle.onclick = function () {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    passwordToggle.textContent = "🙈";
+    passwordToggle.setAttribute("aria-label", "Passwort ausblenden");
+  } else {
+    passwordInput.type = "password";
+    passwordToggle.textContent = "👁";
+    passwordToggle.setAttribute("aria-label", "Passwort anzeigen");
+  }
+};
       if (passwordInput.type === "password") {
         passwordInput.type = "text";
 
