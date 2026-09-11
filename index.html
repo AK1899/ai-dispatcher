@@ -4,200 +4,625 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Dispatcher – Ihr digitaler Büroassistent</title>
+
+  <title>AI Dispatcher – KI für Elektroinstallationsbetriebe</title>
+  <meta name="description" content="AI Dispatcher nimmt Kundenanfragen automatisch auf und erstellt daraus strukturierte Aufträge für Schweizer Elektroinstallationsbetriebe.">
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
+      font-family: Arial, Helvetica, sans-serif;
       color: #172033;
+      background: #f7f9fc;
       line-height: 1.6;
     }
 
-    header {
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 20px 7%;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #e7ebf2;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
     .logo span {
-      font-size: 26px;
+      color: #2563eb;
     }
 
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: #172033;
-      font-weight: 600;
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 14px;
+      color: #596579;
     }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .nav-button {
+      background: #2563eb;
+      color: white !important;
+      padding: 10px 17px;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    /* HERO */
 
     .hero {
-      padding: 90px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-      background: white;
+      padding: 90px 0 80px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.12), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
     }
 
-    .hero-text {
-      max-width: 650px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 65px;
+      align-items: center;
     }
 
     .badge {
-      display: inline-block;
-      background: #eef2ff;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eaf2ff;
+      color: #2563eb;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
       margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
     }
 
     h1 {
-      font-size: 54px;
-      line-height: 1.1;
-      margin-bottom: 25px;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
     }
 
-    .hero p {
-      font-size: 20px;
-      color: #5d6678;
+    h1 span {
+      color: #2563eb;
+    }
+
+    .hero-text {
+      font-size: 19px;
+      color: #5d687b;
+      max-width: 600px;
       margin-bottom: 30px;
     }
 
-    .button {
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button {
       display: inline-block;
-      background: #172033;
+      background: #2563eb;
       color: white;
-      padding: 15px 25px;
+      padding: 14px 21px;
       border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.22);
+      transition: 0.2s;
     }
 
-    .mockup {
-      background: #172033;
-      color: white;
+    .primary-button:hover {
+      transform: translateY(-2px);
+      background: #1d4ed8;
+    }
+
+    .secondary-button {
+      display: inline-block;
+      background: white;
+      border: 1px solid #dce2eb;
+      padding: 14px 21px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .secondary-button:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+
+    /* DEMO CARD */
+
+    .demo-card {
+      background: white;
+      border: 1px solid #e3e8f0;
       border-radius: 18px;
-      padding: 30px;
-      width: 400px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      padding: 25px;
+      box-shadow: 0 20px 60px rgba(25, 40, 70, 0.10);
     }
 
-    .mockup h3 {
+    .demo-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
 
-    .order {
-      background: white;
-      color: #172033;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 12px;
+    .demo-title {
+      font-size: 14px;
+      font-weight: 800;
     }
 
-    .high {
+    .live {
+      color: #16a34a;
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 700;
+    }
+
+    .customer-message {
+      background: #f4f7fb;
+      padding: 17px;
+      border-radius: 12px;
+      margin-bottom: 17px;
+    }
+
+    .customer-label {
+      font-size: 11px;
+      color: #7a8597;
+      text-transform: uppercase;
+      font-weight: 800;
       margin-bottom: 5px;
     }
 
+    .customer-message p {
+      font-weight: 600;
+    }
+
+    .ai-result {
+      border: 1px solid #dce7fb;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ai-header {
+      background: #eef5ff;
+      padding: 13px 15px;
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 15px;
+      border-top: 1px solid #edf0f5;
+      font-size: 13px;
+    }
+
+    .result-label {
+      color: #7a8597;
+    }
+
+    .result-value {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .urgent {
+      color: #dc2626;
+    }
+
+    /* SECTIONS */
+
     section {
-      padding: 80px 7%;
+      padding: 90px 0;
     }
 
-    .section-title {
+    .section-header {
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 50px;
+      max-width: 700px;
+      margin: 0 auto 50px;
     }
 
-    .features {
+    .section-label {
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(31px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -1.4px;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: #697487;
+      font-size: 17px;
+    }
+
+    /* PROBLEM / SOLUTION */
+
+    .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 20px;
     }
 
     .card {
       background: white;
-      padding: 30px;
+      border: 1px solid #e5e9f0;
       border-radius: 15px;
-      border: 1px solid #e5e7eb;
+      padding: 27px;
     }
 
     .icon {
-      font-size: 35px;
-      margin-bottom: 15px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf4ff;
+      color: #2563eb;
+      border-radius: 11px;
+      font-size: 20px;
+      margin-bottom: 18px;
     }
 
     .card h3 {
-      margin-bottom: 10px;
+      font-size: 18px;
+      margin-bottom: 9px;
     }
 
     .card p {
-      color: #697386;
-    }
-
-    .cta {
-      text-align: center;
-      background: #172033;
-      color: white;
-    }
-
-    .cta p {
-      max-width: 600px;
-      margin: 15px auto 30px;
-      color: #d5d9e2;
-    }
-
-    .cta .button {
-      background: white;
-      color: #172033;
-    }
-
-    footer {
-      padding: 30px 7%;
-      text-align: center;
-      background: #111827;
-      color: #aeb6c4;
+      color: #6c7789;
       font-size: 14px;
     }
 
-    @media (max-width: 800px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
+    /* HOW IT WORKS */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      position: relative;
+      background: white;
+      border: 1px solid #e5e9f0;
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    .step-number {
+      color: #2563eb;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #707b8c;
+      font-size: 14px;
+    }
+
+    /* INTERACTIVE DEMO */
+
+    .demo-section {
+      background: #111827;
+      color: white;
+    }
+
+    .demo-section .section-description {
+      color: #aeb8c8;
+    }
+
+    .interactive-demo {
+      max-width: 850px;
+      margin: 0 auto;
+      background: white;
+      color: #172033;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 115px;
+      border: 1px solid #dce2ea;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 15px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .demo-button {
+      margin-top: 13px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .generated {
+      display: none;
+      margin-top: 25px;
+      border: 1px solid #dfe5ee;
+      border-radius: 13px;
+      overflow: hidden;
+    }
+
+    .generated-header {
+      background: #f0f6ff;
+      color: #2563eb;
+      padding: 15px;
+      font-weight: 800;
+    }
+
+    .generated-content {
+      padding: 18px;
+    }
+
+    .generated-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .generated-item {
+      background: #f7f9fc;
+      padding: 13px;
+      border-radius: 9px;
+    }
+
+    .generated-item small {
+      display: block;
+      color: #7a8495;
+      margin-bottom: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .generated-item strong {
+      font-size: 14px;
+    }
+
+    .order-box {
+      margin-top: 14px;
+      padding: 15px;
+      background: #f7f9fc;
+      border-radius: 9px;
+      font-size: 14px;
+    }
+
+    /* PRICING */
+
+    .pricing {
+      background: white;
+    }
+
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      border: 2px solid #2563eb;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 15px 45px rgba(37, 99, 235, 0.10);
+    }
+
+    .pricing-note {
+      display: inline-block;
+      background: #eaf2ff;
+      color: #2563eb;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .price {
+      font-size: 45px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .price span {
+      font-size: 15px;
+      color: #788396;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .pricing-description {
+      color: #697487;
+      margin: 10px 0 22px;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .features li {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: #16a34a;
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 80px 0;
+      text-align: center;
+      background: #eef4ff;
+    }
+
+    .cta p {
+      color: #667286;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #111827;
+      color: #aeb8c8;
+      padding: 30px 0;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      color: white;
+      font-weight: 800;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
       }
 
-      .mockup {
-        width: 100%;
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       h1 {
-        font-size: 40px;
+        letter-spacing: -1.8px;
       }
 
-      .features {
+      .cards {
         grid-template-columns: 1fr;
       }
 
-      nav {
-        display: none;
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 65px 0;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .generated-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-card {
+        padding: 18px;
+      }
+
+      .interactive-demo {
+        padding: 18px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .primary-button,
+      .secondary-button {
+        text-align: center;
       }
     }
   </style>
@@ -205,126 +630,634 @@
 
 <body>
 
-<header>
-  <div class="logo">⚡ AI Dispatcher</div>
+  <!-- NAVIGATION -->
 
   <nav>
-    <a href="#vorteile">Vorteile</a>
-    <a href="#kontakt">Demo</a>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        AI <span>Dispatcher</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#funktion">Funktion</a>
+        <a href="#demo">Demo</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#preis">Preis</a>
+        <a href="#kontakt" class="nav-button">Demo anfragen</a>
+      </div>
+
+    </div>
   </nav>
-</header>
 
-<section class="hero">
 
-  <div class="hero-text">
+  <!-- HERO -->
 
-    <div class="badge">
-      Für Schweizer Elektroinstallationsbetriebe
+  <header class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Für Schweizer Elektroinstallationsbetriebe
+        </div>
+
+        <h1>
+          Weniger Telefon.<br>
+          Mehr <span>Aufträge.</span>
+        </h1>
+
+        <p class="hero-text">
+          AI Dispatcher nimmt Kundenanfragen automatisch auf,
+          stellt die richtigen Rückfragen und erstellt daraus
+          einen strukturierten Auftrag für Ihren Betrieb.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#demo" class="primary-button">
+            Live-Demo testen
+          </a>
+
+          <a href="#funktion" class="secondary-button">
+            So funktioniert es
+          </a>
+        </div>
+
+      </div>
+
+
+      <!-- HERO DEMO -->
+
+      <div class="demo-card">
+
+        <div class="demo-top">
+          <div class="demo-title">Neue Kundenanfrage</div>
+          <div class="live">● KI aktiv</div>
+        </div>
+
+        <div class="customer-message">
+          <div class="customer-label">Kunde</div>
+          <p>„Meine Sicherung fliegt ständig raus.“</p>
+        </div>
+
+        <div class="ai-result">
+
+          <div class="ai-header">
+            ✓ Auftrag automatisch strukturiert
+          </div>
+
+          <div class="result-row">
+            <span class="result-label">Problem</span>
+            <span class="result-value">Sicherung fällt aus</span>
+          </div>
+
+          <div class="result-row">
+            <span class="result-label">Adresse</span>
+            <span class="result-value">Noch abfragen</span>
+          </div>
+
+          <div class="result-row">
+            <span class="result-label">Dringlichkeit</span>
+            <span class="result-value urgent">Hoch</span>
+          </div>
+
+          <div class="result-row">
+            <span class="result-label">Status</span>
+            <span class="result-value">Bereit für Betrieb</span>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <h1>
-      Weniger Büro.<br>
-      Mehr Zeit für Aufträge.
-    </h1>
+  </header>
 
-    <p>
-      AI Dispatcher erfasst Kundenanfragen automatisch,
-      strukturiert die wichtigsten Informationen und
-      macht daraus übersichtliche Aufträge.
-    </p>
 
-    <a class="button" href="#kontakt">
-      Kostenlose Demo
-    </a>
+  <!-- PROBLEM / SOLUTION -->
 
-  </div>
+  <section id="funktion">
 
-  <div class="mockup">
+    <div class="container">
 
-    <h3>Neue Aufträge</h3>
+      <div class="section-header">
 
-    <div class="order">
-      <div class="high">🔴 HOHE PRIORITÄT</div>
-      <strong>Max Müller</strong>
-      <p>Sicherung löst ständig aus</p>
-      <small>Basel · Heute</small>
+        <div class="section-label">Das Problem</div>
+
+        <h2>
+          Kunden rufen an.<br>
+          Mitarbeiter sind beschäftigt.
+        </h2>
+
+        <p class="section-description">
+          Viele kleine Elektroinstallationsbetriebe verlieren Zeit
+          mit unvollständigen Anfragen, Rückrufen und manueller
+          Informationsaufnahme.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">☎</div>
+
+          <h3>
+            Ständige Unterbrechungen
+          </h3>
+
+          <p>
+            Während der Arbeit klingelt das Telefon und Mitarbeiter
+            müssen immer wieder Kundenanfragen aufnehmen.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">?</div>
+
+          <h3>
+            Fehlende Informationen
+          </h3>
+
+          <p>
+            Oft fehlen Adresse, Problem, Fotos oder wichtige
+            Informationen für die Einsatzplanung.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">⚡</div>
+
+          <h3>
+            Zeit geht verloren
+          </h3>
+
+          <p>
+            Rückfragen und manuelle Übertragung kosten Zeit,
+            die eigentlich für Kunden und Aufträge gebraucht wird.
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="order">
-      <div>🟡 NORMAL</div>
-      <strong>Anna Meier</strong>
-      <p>Steckdose funktioniert nicht</p>
-      <small>Muttenz · Morgen</small>
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+
+  <section id="ablauf">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">So funktioniert es</div>
+
+        <h2>
+          Vom Kundenproblem zum fertigen Auftrag.
+        </h2>
+
+        <p class="section-description">
+          Der AI Dispatcher übernimmt die erste Kommunikation
+          und bereitet die Anfrage für Ihren Betrieb vor.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">01</div>
+
+          <h3>
+            Kunde stellt Anfrage
+          </h3>
+
+          <p>
+            Der Kunde beschreibt sein Problem online –
+            jederzeit, auch ausserhalb der Bürozeiten.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">02</div>
+
+          <h3>
+            KI fragt nach
+          </h3>
+
+          <p>
+            Die KI erkennt fehlende Informationen und
+            stellt gezielte Rückfragen.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">03</div>
+
+          <h3>
+            Anfrage wird strukturiert
+          </h3>
+
+          <p>
+            Problem, Adresse, Dringlichkeit und weitere
+            Informationen werden übersichtlich zusammengefasst.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">04</div>
+
+          <h3>
+            Betrieb erhält Auftrag
+          </h3>
+
+          <p>
+            Der Installateur sieht eine klare Anfrage
+            und kann schneller entscheiden, was zu tun ist.
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="order">
-      <div>🟢 NORMAL</div>
-      <strong>Peter Schneider</strong>
-      <p>Neue Lampe installieren</p>
-      <small>Allschwil · Freitag</small>
+  </section>
+
+
+  <!-- INTERACTIVE DEMO -->
+
+  <section id="demo" class="demo-section">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">
+          Interaktive Demo
+        </div>
+
+        <h2>
+          Testen Sie den Dispatcher.
+        </h2>
+
+        <p class="section-description">
+          Schreiben Sie ein typisches Kundenproblem in das Feld.
+          Die Demo zeigt anschliessend, wie daraus ein strukturierter
+          Auftrag entstehen kann.
+        </p>
+
+      </div>
+
+
+      <div class="interactive-demo">
+
+        <label class="input-label" for="customerInput">
+          Kundenanfrage
+        </label>
+
+        <textarea
+          id="customerInput"
+          placeholder="Zum Beispiel: Meine Sicherung fliegt ständig raus..."
+        ></textarea>
+
+        <button
+          onclick="generateOrder()"
+          class="primary-button demo-button"
+        >
+          Anfrage analysieren →
+        </button>
+
+
+        <div id="generated" class="generated">
+
+          <div class="generated-header">
+            ✓ Strukturierter Auftrag
+          </div>
+
+          <div class="generated-content">
+
+            <div class="generated-grid">
+
+              <div class="generated-item">
+
+                <small>Problem</small>
+
+                <strong id="problem">
+                  –
+                </strong>
+
+              </div>
+
+
+              <div class="generated-item">
+
+                <small>Dringlichkeit</small>
+
+                <strong id="urgency">
+                  –
+                </strong>
+
+              </div>
+
+
+              <div class="generated-item">
+
+                <small>Adresse</small>
+
+                <strong>
+                  Noch vom Kunden abfragen
+                </strong>
+
+              </div>
+
+
+              <div class="generated-item">
+
+                <small>Zusatzinfos</small>
+
+                <strong>
+                  Fehler tritt wiederholt auf
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="order-box">
+
+              <strong>Fertiger Auftrag</strong>
+
+              <p id="orderText">
+                –
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-  </div>
+  </section>
 
-</section>
 
-<section id="vorteile">
+  <!-- PRICING -->
 
-  <h2 class="section-title">
-    Dein digitaler Büroassistent
-  </h2>
+  <section id="preis" class="pricing">
 
-  <div class="features">
+    <div class="container">
 
-    <div class="card">
-      <div class="icon">📞</div>
-      <h3>Anfragen erfassen</h3>
+      <div class="section-header">
+
+        <div class="section-label">
+          Einfach starten
+        </div>
+
+        <h2>
+          Weniger Verwaltungsaufwand.
+        </h2>
+
+        <p class="section-description">
+          Die Preise sind aktuell eine Arbeitshypothese und werden
+          gemeinsam mit ersten Elektroinstallationsbetrieben validiert.
+        </p>
+
+      </div>
+
+
+      <div class="pricing-card">
+
+        <div class="pricing-note">
+          TESTPHASE
+        </div>
+
+        <div class="price">
+          Individuell
+          <span>/ Monat</span>
+        </div>
+
+        <p class="pricing-description">
+          Für die ersten Pilotbetriebe wird der AI Dispatcher
+          zunächst gemeinsam getestet und angepasst.
+        </p>
+
+        <ul class="features">
+
+          <li>
+            Automatische Kundenaufnahme
+          </li>
+
+          <li>
+            Strukturierte Aufträge
+          </li>
+
+          <li>
+            Dringlichkeit erkennen
+          </li>
+
+          <li>
+            Übersichtliches Dashboard
+          </li>
+
+          <li>
+            Persönliche Pilotbegleitung
+          </li>
+
+        </ul>
+
+        <a href="#kontakt" class="primary-button">
+          Pilotprojekt anfragen
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section id="kontakt" class="cta">
+
+    <div class="container">
+
+      <div class="section-label">
+        Pilotbetriebe gesucht
+      </div>
+
+      <h2>
+        Interesse an einem kostenlosen Test?
+      </h2>
+
       <p>
-        Kundenanfragen werden strukturiert aufgenommen,
-        damit keine wichtigen Informationen verloren gehen.
+        Wir suchen aktuell 2–3 Schweizer Elektroinstallationsbetriebe,
+        die den AI Dispatcher als Pilot testen und mit uns verbessern.
       </p>
+
+      <a
+        href="mailto:kontakt@ai-dispatcher.ch"
+        class="primary-button"
+      >
+        Pilotprojekt anfragen
+      </a>
+
     </div>
 
-    <div class="card">
-      <div class="icon">🤖</div>
-      <h3>KI-Unterstützung</h3>
-      <p>
-        Die KI erkennt das Problem und hilft,
-        Anfragen nach Dringlichkeit zu sortieren.
-      </p>
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div class="footer-logo">
+        AI Dispatcher
+      </div>
+
+      <div>
+        © 2026 AI Dispatcher · Schweiz
+      </div>
+
     </div>
 
-    <div class="card">
-      <div class="icon">⚡</div>
-      <h3>Aufträge im Überblick</h3>
-      <p>
-        Neue und laufende Aufträge übersichtlich
-        an einem Ort verwalten.
-      </p>
-    </div>
+  </footer>
 
-  </div>
 
-</section>
+  <!-- DEMO JAVASCRIPT -->
 
-<section class="cta" id="kontakt">
+  <script>
 
-  <h2>Bereit, weniger Büroarbeit zu haben?</h2>
+    function generateOrder() {
 
-  <p>
-    Teste AI Dispatcher kostenlos und entdecke,
-    wie dein Betrieb Kundenanfragen einfacher verwalten kann.
-  </p>
+      const input =
+        document.getElementById("customerInput").value.trim();
 
-  <a class="button" href="mailto:demo@example.com">
-    Demo anfragen
-  </a>
+      const result =
+        document.getElementById("generated");
 
-</section>
+      const problem =
+        document.getElementById("problem");
 
-<footer>
-  © 2026 AI Dispatcher · Für Schweizer Elektroinstallationsbetriebe
-</footer>
+      const urgency =
+        document.getElementById("urgency");
+
+      const orderText =
+        document.getElementById("orderText");
+
+
+      if (input === "") {
+
+        alert("Bitte zuerst eine Kundenanfrage eingeben.");
+
+        return;
+
+      }
+
+
+      let detectedProblem =
+        "Technische Störung";
+
+      let detectedUrgency =
+        "Normal";
+
+
+      const text =
+        input.toLowerCase();
+
+
+      if (
+        text.includes("sicherung") ||
+        text.includes("strom") ||
+        text.includes("ausfall") ||
+        text.includes("fliegt")
+      ) {
+
+        detectedProblem =
+          "Elektrische Störung / Sicherung";
+
+        detectedUrgency =
+          "Hoch";
+
+      }
+
+
+      if (
+        text.includes("brand") ||
+        text.includes("rauch") ||
+        text.includes("funken") ||
+        text.includes("feuer")
+      ) {
+
+        detectedProblem =
+          "Mögliche akute Gefahrenstelle";
+
+        detectedUrgency =
+          "Sehr hoch";
+
+      }
+
+
+      problem.textContent =
+        detectedProblem;
+
+      urgency.textContent =
+        detectedUrgency;
+
+
+      orderText.textContent =
+        "Kundenanfrage: " +
+        input +
+        " – Problem wurde erfasst. " +
+        "Adresse und weitere technische Informationen " +
+        "müssen noch abgefragt werden.";
+
+
+      result.style.display =
+        "block";
+
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    }
+
+  </script>
 
 </body>
 </html>
