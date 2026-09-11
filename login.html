@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -166,16 +167,6 @@
       font-size: 13px;
     }
 
-    .login-footer {
-      margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px solid #1e293b;
-      text-align: center;
-      color: #64748b;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
     .security {
       display: flex;
       align-items: center;
@@ -194,6 +185,16 @@
       box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
     }
 
+    .login-footer {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
     @media (max-width: 520px) {
       .login-card {
         padding: 30px 22px;
@@ -204,149 +205,78 @@
       }
     }
   </style>
+
 </head>
 
 <body>
 
   <main class="login-wrapper">
 
-    <div class="brand">
-      <div class="brand-name">
-        AI <span>Dispatcher</span>
-      </div>
+```
+<div class="brand">
+  <div class="brand-name">
+    AI <span>Dispatcher</span>
+  </div>
 
-      <div class="brand-tagline">
-        KI für Schweizer Elektroinstallationsbetriebe
+  <div class="brand-tagline">
+    KI für Schweizer Elektroinstallationsbetriebe
+  </div>
+</div>
+
+<section class="login-card">
+
+  <div class="login-header">
+    <h1>Willkommen zurück</h1>
+    <p>
+      Melden Sie sich an, um auf Ihren
+      AI Dispatcher Bereich zuzugreifen.
+    </p>
+  </div>
+
+  <form id="login-form">
+
+    <div class="form-group">
+      <label for="email">E-Mail-Adresse</label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="ihre@email.ch"
+        autocomplete="email"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="password">Passwort</label>
+
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          placeholder="Ihr Passwort"
+          autocomplete="current-password"
+          required
+        >
+
+        <button
+          type="button"
+          class="password-toggle"
+          id="password-toggle"
+          aria-label="Passwort anzeigen"
+        >
+          👁
+        </button>
       </div>
     </div>
 
-    <section class="login-card">
+    <button type="submit" class="login-button">
+      Anmelden
+    </button>
 
-      <div class="login-header">
-        <h1>Willkommen zurück</h1>
-        <p>
-          Melden Sie sich an, um auf Ihren
-          AI Dispatcher Bereich zuzugreifen.
-        </p>
-      </div>
+    <p id="login-message"></p>
 
-      <form id="login-form">
+  </form>
 
-        <div class="form-group">
-          <label for="email">E-Mail-Adresse</label>
-
-          <input
-            type="email"
-            id="email"
-            placeholder="ihre@email.ch"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="password">Passwort</label>
-
-          <div class="password-wrapper">
-            <input
-              type="password"
-              id="password"
-              placeholder="Ihr Passwort"
-              autocomplete="current-password"
-              required
-            >
-
-            <button
-              type="button"
-              class="password-toggle"
-              id="password-toggle"
-              aria-label="Passwort anzeigen"
-            >
-              👁
-            </button>
-          </div>
-        </div>
-
-        <button type="submit" class="login-button">
-          Anmelden
-        </button>
-
-        <p id="login-message"></p>
-
-      </form>
-
-      <div class="security">
-        <span class="security-dot"></span>
-        Sichere Anmeldung
-      </div>
-
-      <div class="login-footer">
-        AI Dispatcher<br>
-        Automatisierung für Schweizer Elektroinstallationsbetriebe
-      </div>
-
-    </section>
-
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script>
-    const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
-
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-    const loginForm = document.getElementById("login-form");
-    const passwordToggle = document.getElementById("password-toggle");
-    const passwordInput = document.getElementById("password");
-    const loginMessage = document.getElementById("login-message");
-
-    loginForm.addEventListener("submit", async function(event) {
-      event.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = passwordInput.value;
-
-      loginMessage.textContent = "Anmeldung läuft...";
-      loginMessage.style.color = "#94a3b8";
-
-      const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-if (error) {
-  loginMessage.textContent =
-    "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-  loginMessage.style.color = "#f87171";
-  return;
-}
-
-window.location.href = "dashboard.html";
-    });
-
-    passwordToggle.addEventListener("click", function() {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        passwordToggle.textContent = "🙈";
-        passwordToggle.setAttribute(
-          "aria-label",
-          "Passwort ausblenden"
-        );
-      } else {
-        passwordInput.type = "password";
-        passwordToggle.textContent = "👁";
-        passwordToggle.setAttribute(
-          "aria-label",
-          "Passwort anzeigen"
-        );
-      }
-    });
-  </script>
-
-</body>
-</html>
+  <div class="security">
+```
