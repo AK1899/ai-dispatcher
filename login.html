@@ -113,6 +113,32 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     }
 
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 50px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 2;
+    }
+
+    .password-toggle:hover {
+      color: #94a3b8;
+    }
+
     .login-button {
       width: 100%;
       margin-top: 5px;
@@ -175,39 +201,8 @@
 
       .login-header h1 {
         font-size: 24px;
-        
-    .password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  padding-right: 50px;
-}
-
-.password-toggle {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  color: #64748b;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.password-toggle:hover {
-  color: #94a3b8;
-}
-  font-size: 18px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.password-toggle:hover {
-  color: #94a3b8;
-}
+      }
+    }
   </style>
 </head>
 
@@ -239,6 +234,7 @@
 
         <div class="form-group">
           <label for="email">E-Mail-Adresse</label>
+
           <input
             type="email"
             id="email"
@@ -248,28 +244,28 @@
           >
         </div>
 
-      <div class="form-group">
-  <label for="password">Passwort</label>
+        <div class="form-group">
+          <label for="password">Passwort</label>
 
-  <div class="password-wrapper">
-    <input
-      type="password"
-      id="password"
-      placeholder="Ihr Passwort"
-      autocomplete="current-password"
-      required
-    >
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Ihr Passwort"
+              autocomplete="current-password"
+              required
+            >
 
-    <button
-      type="button"
-      class="password-toggle"
-      id="password-toggle"
-      aria-label="Passwort anzeigen"
-    >
-      👁
-    </button>
-  </div>
-</div>
+            <button
+              type="button"
+              class="password-toggle"
+              id="password-toggle"
+              aria-label="Passwort anzeigen"
+            >
+              👁
+            </button>
+          </div>
+        </div>
 
         <button type="submit" class="login-button">
           Anmelden
@@ -292,56 +288,66 @@
     </section>
 
   </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-  const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+  <script>
+    const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
 
-  document.getElementById("login-form").addEventListener("submit", async function(event) {
-    event.preventDefault();
+    const supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("login-message");
+    const loginForm = document.getElementById("login-form");
+    const passwordToggle = document.getElementById("password-toggle");
+    const passwordInput = document.getElementById("password");
+    const loginMessage = document.getElementById("login-message");
 
-    message.textContent = "Anmeldung läuft...";
-    message.style.color = "#94a3b8";
+    loginForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
+      const email = document.getElementById("email").value.trim();
+      const password = passwordInput.value;
+
+      loginMessage.textContent = "Anmeldung läuft...";
+      loginMessage.style.color = "#94a3b8";
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        loginMessage.textContent =
+          "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
+        loginMessage.style.color = "#f87171";
+        return;
+      }
+
+      loginMessage.textContent = "Anmeldung erfolgreich.";
+      loginMessage.style.color = "#4ade80";
     });
 
-    if (error) {
-      message.textContent = "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-      message.style.color = "#f87171";
-      return;
-    }
-
-    message.textContent = "Anmeldung erfolgreich.";
-    message.style.color = "#4ade80";
-  });
-
-<script>
-  const eyeButton = document.getElementById("password-toggle");
-  const passwordField = document.getElementById("password");
-
-  eyeButton.onclick = function () {
-    if (passwordField.type === "password") {
-      passwordField.type = "text";
-      eyeButton.textContent = "🙈";
-    } else {
-      passwordField.type = "password";
-      eyeButton.textContent = "👁";
-    }
-  };
-</script>
+    passwordToggle.addEventListener("click", function() {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordToggle.textContent = "🙈";
+        passwordToggle.setAttribute(
+          "aria-label",
+          "Passwort ausblenden"
+        );
+      } else {
+        passwordInput.type = "password";
+        passwordToggle.textContent = "👁";
+        passwordToggle.setAttribute(
+          "aria-label",
+          "Passwort anzeigen"
+        );
+      }
+    });
+  </script>
 
 </body>
 </html>
