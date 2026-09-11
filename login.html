@@ -113,7 +113,7 @@
       top: 4px;
       width: 40px;
       height: 40px;
-      border: 0;
+      border: none;
       border-radius: 8px;
       background: transparent;
       color: #64748b;
@@ -121,7 +121,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 19px;
     }
 
     .eye-button:hover {
@@ -129,11 +128,21 @@
       color: #f8fafc;
     }
 
+    .eye-button svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .submit-button {
       width: 100%;
       height: 48px;
       margin-top: 4px;
-      border: 0;
+      border: none;
       border-radius: 10px;
       background: #2563eb;
       color: white;
@@ -230,113 +239,4 @@
         </div>
 
         <div class="field">
-          <label for="password">Passwort</label>
-
-          <div class="password-box">
-
-            <input
-              id="password"
-              type="password"
-              placeholder="Ihr Passwort"
-              autocomplete="current-password"
-              required
-            >
-
-            <button
-              id="eye-button"
-              class="eye-button"
-              type="button"
-              aria-label="Passwort anzeigen"
-            >👁</button>
-
-          </div>
-        </div>
-
-        <button
-          class="submit-button"
-          type="submit"
-        >
-          Anmelden
-        </button>
-
-        <div id="message"></div>
-
-      </form>
-
-      <div class="security">
-        <span class="dot"></span>
-        Sichere Anmeldung
-      </div>
-
-      <div class="footer">
-        AI Dispatcher<br>
-        Automatisierung für Schweizer Elektroinstallationsbetriebe
-      </div>
-
-    </div>
-
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script>
-    const SUPABASE_URL = "https://llzpkvqqpvfyzhlzvrjc.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_zZx_pRsG2cWRDE_OisbFCg_GHTkn5ND";
-
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-    const passwordInput = document.getElementById("password");
-    const eyeButton = document.getElementById("eye-button");
-    const loginForm = document.getElementById("login-form");
-    const message = document.getElementById("message");
-
-    eyeButton.addEventListener("click", function () {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        eyeButton.textContent = "🙈";
-        eyeButton.setAttribute(
-          "aria-label",
-          "Passwort ausblenden"
-        );
-      } else {
-        passwordInput.type = "password";
-        eyeButton.textContent = "👁";
-        eyeButton.setAttribute(
-          "aria-label",
-          "Passwort anzeigen"
-        );
-      }
-    });
-
-    loginForm.addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = passwordInput.value;
-
-      message.textContent = "Anmeldung läuft...";
-      message.style.color = "#94a3b8";
-
-      const result = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-      if (result.error) {
-        message.textContent =
-          "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-        message.style.color = "#f87171";
-        return;
-      }
-
-      message.textContent = "Anmeldung erfolgreich.";
-      message.style.color = "#4ade80";
-    });
-  </script>
-
-</body>
-</html>
 ```
