@@ -1270,6 +1270,46 @@
     SUPABASE_KEY
   );
 </script>
+  <div id="login-box">
+  <h2>AI Dispatcher Login</h2>
+
+  <input
+    type="email"
+    id="email"
+    placeholder="E-Mail"
+  >
+
+  <input
+    type="password"
+    id="password"
+    placeholder="Passwort"
+  >
+
+  <button onclick="login()">Anmelden</button>
+
+  <p id="login-message"></p>
+</div>
+
+<script>
+  async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("login-message");
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      message.textContent = "Login fehlgeschlagen: " + error.message;
+      return;
+    }
+
+    message.textContent = "Erfolgreich angemeldet!";
+    console.log("Angemeldet:", data.user);
+  }
+</script>
 </body>
 </html>
 ```
