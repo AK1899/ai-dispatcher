@@ -649,12 +649,15 @@
   /* LOGIN */
 
 .login-section {
-  min-height: 100vh;
-  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px;
-  background: #f8fafc;
+  padding: 40px 20px;
+  background: rgba(248, 250, 252, 0.97);
+}
 }
 
 .login-card {
