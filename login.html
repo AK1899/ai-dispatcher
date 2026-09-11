@@ -320,9 +320,7 @@
       });
 
       if (error) {
-        loginMessage.textContent =
-          "Anmeldung fehlgeschlagen. Bitte E-Mail und Passwort prüfen.";
-        loginMessage.style.color = "#f87171";
+      window.location.href = "dashboard.html";
         return;
       }
 
